@@ -454,48 +454,6 @@
       return chart;
     });
 
-    function getData() {
-      return stream_layers(2,10+Math.random()*100,.1).map(function(data, i) {
-        return {
-          key: 'Stream #' + i,
-          values: data
-        };
-      });
-    }
-    
-    function getData2() {
-      return [
-               { key: "Stream 0"
-               , values: 
-                    [    {series: 0, x: 0, y: 1.2}
-                    ,    {series: 0, x: 1, y: 5.2}
-                    ,    {series: 0, x: 2, y: 8.2}
-                    ,    {series: 0, x: 3, y: 6.2}
-                    ,    {series: 0, x: 4, y: 5.2}
-                    ,    {series: 0, x: 5, y: 4.2}
-                    ,    {series: 0, x: 6, y: 3.2}
-                    ,    {series: 0, x: 7, y: 2.2}
-                    ,    {series: 0, x: 8, y: 2.2}
-                    ,    {series: 0, x: 9, y: 1.2}
-                    ]
-               }
-          ,    { key: "Stream 1"
-               , values: 
-                    [    {series: 1, x: 0, y: 1.2}
-                    ,    {series: 1, x: 1, y: 2.2}
-                    ,    {series: 1, x: 2, y: 3.2}
-                    ,    {series: 1, x: 3, y: 4.2}
-                    ,    {series: 1, x: 4, y: 4.2}
-                    ,    {series: 1, x: 5, y: 4.2}
-                    ,    {series: 1, x: 6, y: 5.2}
-                    ,    {series: 1, x: 7, y: 7.2}
-                    ,    {series: 1, x: 8, y: 8.2}
-                    ,    {series: 1, x: 9, y: 6.2}
-                    ]
-               }
-          ];
-    }
-    
     function getData3(data) {
       var out = [ { key: "Hourly Rates", values: [] } ];
       for (var r in data.wage_histogram)
@@ -511,41 +469,6 @@
 
   }
   
-
-/* Inspired by Lee Byron's test data generator. */
-function stream_layers(n, m, o) {
-  if (arguments.length < 3) o = 0;
-  function bump(a) {
-    var x = 1 / (.1 + Math.random()),
-        y = 2 * Math.random() - .5,
-        z = 10 / (.1 + Math.random());
-    for (var i = 0; i < m; i++) {
-      var w = (i / m - y) * z;
-      a[i] += x * Math.exp(-w * w);
-    }
-  }
-  return d3.range(n).map(function() {
-      var a = [], i;
-      for (i = 0; i < m; i++) a[i] = o + o * Math.random();
-      for (i = 0; i < 5; i++) bump(a);
-      return a.map(stream_index);
-    });
-}
-
-/* Another layer generator using gamma distributions. */
-function stream_waves(n, m) {
-  return d3.range(n).map(function(i) {
-    return d3.range(m).map(function(j) {
-        var x = 20 * j / m - i / 3;
-        return 2 * x * Math.exp(-.5 * x);
-      }).map(stream_index);
-    });
-}
-
-function stream_index(d, i) {
-  return {x: i, y: Math.max(0, d)};
-}
-
 
 
   function updateResults(data) {
