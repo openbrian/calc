@@ -14,7 +14,7 @@ import sys
 import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-API_HOST = os.environ.get('API_HOST', '/api/')
+API_HOST = os.environ.get('API_HOST', '/calc/api/')
 
 
 # Quick-start development settings - unsuitable for production
