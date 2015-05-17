@@ -438,11 +438,12 @@
     var data2 = data;
     nv.addGraph(function() {
       var chart = nv.models.multiBarChart()
+        .reduceXTicks(false)
         .showControls(false);
 
-      chart.xAxis.tickFormat(d3.format(',f'));
+      chart.xAxis.tickFormat(d3.format('$,f'));
 
-      chart.yAxis.tickFormat(d3.format(',.1f'));
+      chart.yAxis.tickFormat(d3.format(',f'));
 
       var data = getData3(data2);
       d3.select('#chart svg')
@@ -455,7 +456,7 @@
     });
 
     function getData3(data) {
-      var out = [ { key: "Hourly Rates", values: [] } ];
+      var out = [ { key: "Number of results", values: [] } ];
       for (var r in data.wage_histogram)
         {
         out[0].values.push( 
