@@ -435,7 +435,7 @@
   }
   
   function updateChart(data) {
-    console.log( data );
+    var data2 = data;
     nv.addGraph(function() {
       var chart = nv.models.multiBarChart()
         .showControls(false);
@@ -444,9 +444,7 @@
 
       chart.yAxis.tickFormat(d3.format(',.1f'));
 
-      var data = getData2();
-      console.log( 'data is' );
-      console.log( data );
+      var data = getData3(data2);
       d3.select('#chart svg')
           .datum(data)
           .call(chart);
@@ -497,8 +495,22 @@
                }
           ];
     }
+    
+    function getData3(data) {
+      var out = [ { key: "Hourly Rates", values: [] } ];
+      for (var r in data.wage_histogram)
+        {
+        out[0].values.push( 
+          { series: 0
+          , x: r
+          , y: data.wage_histogram[r].count  
+          } );
+        }
+      return out;
+    }
 
   }
+  
 
 /* Inspired by Lee Byron's test data generator. */
 function stream_layers(n, m, o) {
