@@ -13,3 +13,4 @@ ghostdriver.log
 *.log
 node_modules
 selenium_tests/screenshot.png
+*.kate-swp
