@@ -460,7 +460,7 @@
         {
         out[0].values.push( 
           { series: 0
-          , x: r
+          , x: Math.round((data.wage_histogram[r].min + data.wage_histogram[r].max) / 2.0)
           , y: data.wage_histogram[r].count  
           } );
         }
